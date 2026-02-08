@@ -131,21 +131,21 @@ class UnsortedBoxplot(Scene):
             "outliers": [80.4496, 80.527, 81.1568, 81.2081, 81.4157, 82.4489]
         }
 
-        bubble_ax = get_axes('Bubble', [800, 1700, 100])
+        bubble_ax = get_axes('Bubble Sort', [800, 1700, 100])
         bubble_ax_plot = get_boxplot(bubble_ax, bubble_sort, 1, 0.75)
         bubble_graph = VGroup(bubble_ax, bubble_ax_plot)
         self.play(Write(bubble_ax))
         draw_boxplot(self, bubble_ax_plot)
 
-        selection_graph = replace_graph(self, bubble_graph, 'Selection',
+        selection_graph = replace_graph(self, bubble_graph, 'Selection Sort',
                                         [575, 595, 5], selection_sort)
-        insertion_graph = replace_graph(self, selection_graph, 'Insertion',
+        insertion_graph = replace_graph(self, selection_graph, 'Insertion Sort',
                                         [215, 230, 5], insertion_sort)
-        heap_graph = replace_graph(self, insertion_graph, 'Heap',
+        heap_graph = replace_graph(self, insertion_graph, 'Heap Sort',
                                    [95, 99, 1], heap_sort)
-        merge_graph = replace_graph(self, heap_graph, 'Merge',
+        merge_graph = replace_graph(self, heap_graph, 'Merge Sort',
                                     [124, 130, 1], merge_sort)
-        quick_graph = replace_graph(self, merge_graph, 'Quick',
+        quick_graph = replace_graph(self, merge_graph, 'Quick Sort',
                                     [80, 83, 1], quick_sort)
 
         self.play(FadeOut(quick_graph))
@@ -154,7 +154,7 @@ class UnsortedBoxplot(Scene):
 
 class Transition(Scene):
     def construct(self):
-        self.play(FadeOut(self.mobjects))
+        self.play(FadeOut(VGroup(*self.mobjects)))
         self.wait()
 
 
@@ -221,35 +221,35 @@ class SortedBoxplot(Scene):
                          0.949045, 0.980058]
         }
 
-        selection_ax = get_axes('Selection', [490, 504, 2])
+        selection_ax = get_axes('Selection Sort', [490, 504, 2])
         selection_plot = get_boxplot(selection_ax, selection_sort, 1, 0.75)
         selection_graph = VGroup(selection_ax, selection_plot)
         self.play(Write(selection_ax))
         draw_boxplot(self, selection_plot)
 
-        quick_graph = replace_graph(self, selection_graph, 'Quick',
+        quick_graph = replace_graph(self, selection_graph, 'Quick Sort',
                                     [272, 290, 2], quick_sort)
 
-        merge_graph = replace_graph(self, quick_graph, 'Merge',
+        merge_graph = replace_graph(self, quick_graph, 'Merge Sort',
                                     [56, 62, 1], merge_sort)
 
-        heap_graph = replace_graph(self, merge_graph, 'Heap',
+        heap_graph = replace_graph(self, merge_graph, 'Heap Sort',
                                    [20, 28, 2], heap_sort)
 
-        bubble_graph = replace_graph(self, heap_graph, 'Bubble',
+        bubble_graph = replace_graph(self, heap_graph, 'Bubble Sort',
                                      [1.2, 1.5, 0.1], bubble_sort)
 
-        bubble_zoomed_ax = get_axes('Bubble', [1.2, 1.28, 0.02])
+        bubble_zoomed_ax = get_axes('Bubble Sort', [1.2, 1.28, 0.02])
         bubble_zoomed_plot = get_boxplot(
             bubble_zoomed_ax, bubble_sort, 1, 0.75)
         bubble_zoomed_graph = VGroup(bubble_zoomed_ax, bubble_zoomed_plot)
         self.play(ReplacementTransform(bubble_graph, bubble_zoomed_graph))
         self.wait()
 
-        insertion_graph = replace_graph(self, bubble_zoomed_graph, 'Insertion',
+        insertion_graph = replace_graph(self, bubble_zoomed_graph, 'Insertion Sort',
                                         [0.7, 1, 0.1], insertion_sort)
 
-        insertion_zoomed_ax = get_axes('Insertion', [0.779, 0.782, 0.001])
+        insertion_zoomed_ax = get_axes('Insertion Sort', [0.779, 0.782, 0.001])
         insertion_zoomed_plot = get_boxplot(
             insertion_zoomed_ax, insertion_sort, 1, 0.75)
         insertion_zoomed_graph = VGroup(
